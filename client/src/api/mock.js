@@ -58,10 +58,42 @@ const mockAxios = {
         ]};
     }
     if (url.includes('/api/traffic/analytics')) {
-        return { data: { trips: 156, efficiency: 84 } };
+        return { data: {
+            deliveryTrend: [
+                { day: 'Mon', total: 52, consolidated: 38, onTime: 45 },
+                { day: 'Tue', total: 48, consolidated: 34, onTime: 42 },
+                { day: 'Wed', total: 61, consolidated: 42, onTime: 55 },
+                { day: 'Thu', total: 55, consolidated: 40, onTime: 48 },
+                { day: 'Fri', total: 58, consolidated: 43, onTime: 50 },
+                { day: 'Sat', total: 42, consolidated: 30, onTime: 38 },
+                { day: 'Sun', total: 35, consolidated: 22, onTime: 30 },
+            ],
+            zoneDistribution: [
+                { name: 'Downtown Core', value: 85, color: '#ef4444' },
+                { name: 'Commercial Hub', value: 65, color: '#f59e0b' },
+                { name: 'Suburban', value: 45, color: '#10b981' },
+                { name: 'Industrial', value: 55, color: '#8b5cf6' },
+                { name: 'Port Zone', value: 35, color: '#06b6d4' },
+            ],
+            peakHours: Array.from({ length: 24 }, (_, i) => ({
+                hour: `${String(i).padStart(2, '0')}:00`,
+                intensity: (i >= 8 && i <= 10) || (i >= 17 && i <= 20) ? 70 + Math.floor(Math.random() * 30) : i >= 11 && i <= 16 ? 30 + Math.floor(Math.random() * 30) : Math.floor(Math.random() * 25),
+            })),
+            fleetUtilization: { total: 156, active: 102, idle: 38, maintenance: 16 },
+            costSavings: { fuelSaved: '12450', timeSaved: '420', tripsOptimized: 580, avgDeliveryTime: '32.5' },
+        }};
     }
     if (url.includes('/api/traffic/emissions')) {
-        return { data: { reduction: '28%' } };
+        return { data: {
+            dailyEmissions: [
+                { day: 'Mon', CO2: 420 }, { day: 'Tue', CO2: 380 }, { day: 'Wed', CO2: 450 },
+                { day: 'Thu', CO2: 410 }, { day: 'Fri', CO2: 430 }, { day: 'Sat', CO2: 350 }, { day: 'Sun', CO2: 300 }
+            ],
+            reductionTrend: [
+                { month: 'Jan', reduction: 12 }, { month: 'Feb', reduction: 18 }, { month: 'Mar', reduction: 25 }, { month: 'Apr', reduction: 28 }
+            ],
+            metrics: { totalCO2Reduced: '4.2', fuelSaved: '12,450', treeEquivalent: '192', efficiencyGain: '32%' }
+        }};
     }
     if (url.includes('/api/booking/my-bookings')) {
         return { data: mockData.bookings };
