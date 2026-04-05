@@ -52,9 +52,11 @@ const mockAxios = {
     }
     if (url.includes('/api/traffic/zones') || url.includes('/api/booking/recommendations')) {
         return { data: [
-            { id: 1, name: 'Mira Road East', congestionIndex: 78, congestionLevel: 'high', lat: 19.2813, lng: 72.8557, radius: 1200, activeDeliveries: 12, avgSpeed: 18 },
-            { id: 2, name: 'Bhayandar West', congestionIndex: 25, congestionLevel: 'low', lat: 19.3100, lng: 72.8450, radius: 1400, activeDeliveries: 5, avgSpeed: 38 },
-            { id: 3, name: 'Mira Road West', congestionIndex: 55, congestionLevel: 'medium', lat: 19.2882, lng: 72.8633, radius: 1000, activeDeliveries: 15, avgSpeed: 22 },
+            { id: 'miraroad', name: 'Mira Road', congestionIndex: 78, congestionLevel: 'high', lat: 19.2813, lng: 72.8557, radius: 1200, activeDeliveries: 12, avgSpeed: 18, vehicleCount: 45 },
+            { id: 'bhayandare', name: 'Bhayandar East', congestionIndex: 55, congestionLevel: 'medium', lat: 19.3000, lng: 72.8580, radius: 1400, activeDeliveries: 8, avgSpeed: 25, vehicleCount: 32 },
+            { id: 'bhayandarw', name: 'Bhayandar West', congestionIndex: 25, congestionLevel: 'low', lat: 19.3100, lng: 72.8450, radius: 1400, activeDeliveries: 5, avgSpeed: 38, vehicleCount: 15 },
+            { id: 'goldennest', name: 'Golden Nest', congestionIndex: 62, congestionLevel: 'medium', lat: 19.2882, lng: 72.8633, radius: 1000, activeDeliveries: 15, avgSpeed: 22, vehicleCount: 28 },
+            { id: 'kashimira', name: 'Kashimira', congestionIndex: 82, congestionLevel: 'high', lat: 19.2741, lng: 72.8715, radius: 1100, activeDeliveries: 20, avgSpeed: 12, vehicleCount: 50 },
         ]};
     }
     if (url.includes('/api/traffic/analytics')) {
@@ -85,14 +87,42 @@ const mockAxios = {
     }
     if (url.includes('/api/traffic/emissions')) {
         return { data: {
-            dailyEmissions: [
-                { day: 'Mon', CO2: 420 }, { day: 'Tue', CO2: 380 }, { day: 'Wed', CO2: 450 },
-                { day: 'Thu', CO2: 410 }, { day: 'Fri', CO2: 430 }, { day: 'Sat', CO2: 350 }, { day: 'Sun', CO2: 300 }
+            monthlyTrends: [
+                { month: 'Jan', before: 420, after: 180 },
+                { month: 'Feb', before: 380, after: 165 },
+                { month: 'Mar', before: 450, after: 195 },
+                { month: 'Apr', before: 400, after: 170 },
+                { month: 'May', before: 430, after: 185 },
+                { month: 'Jun', before: 460, after: 200 },
+                { month: 'Jul', before: 440, after: 190 },
+                { month: 'Aug', before: 420, after: 175 },
+                { month: 'Sep', before: 410, after: 168 },
+                { month: 'Oct', before: 435, after: 182 },
+                { month: 'Nov', before: 390, after: 160 },
+                { month: 'Dec', before: 370, after: 150 },
             ],
-            reductionTrend: [
-                { month: 'Jan', reduction: 12 }, { month: 'Feb', reduction: 18 }, { month: 'Mar', reduction: 25 }, { month: 'Apr', reduction: 28 }
+            summary: {
+                totalCO2Saved: '4250',
+                reductionPercent: '28.5',
+                greenFleetPercent: '38.2',
+                carbonCredits: 145,
+                treesEquivalent: 280,
+            },
+            vehicleTypeEmissions: [
+                { type: 'Electric Bike', emission: 0, count: 15 },
+                { type: 'Light Van', emission: 45, count: 50 },
+                { type: 'Medium Delivery', emission: 85, count: 55 },
+                { type: 'Heavy Truck', emission: 180, count: 36 },
             ],
-            metrics: { totalCO2Reduced: '4.2', fuelSaved: '12,450', treeEquivalent: '192', efficiencyGain: '32%' }
+            weeklyData: [
+                { day: 'Mon', co2Before: 420, co2After: 280 },
+                { day: 'Tue', co2Before: 380, co2After: 260 },
+                { day: 'Wed', co2Before: 450, co2After: 300 },
+                { day: 'Thu', co2Before: 410, co2After: 275 },
+                { day: 'Fri', co2Before: 430, co2After: 290 },
+                { day: 'Sat', co2Before: 350, co2After: 220 },
+                { day: 'Sun', co2Before: 300, co2After: 180 },
+            ],
         }};
     }
     if (url.includes('/api/booking/my-bookings')) {

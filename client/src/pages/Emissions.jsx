@@ -16,9 +16,16 @@ const Emissions = () => {
     useEffect(() => {
         const fetchEmissions = async () => {
             try {
+                // Try fetching from the mock API first (which may be aliased axios)
                 const res = await axios.get('http://localhost:5000/api/traffic/emissions');
-                setData(res.data);
-            } catch {
+                if (res.data && res.data.summary) {
+                    setData(res.data);
+                } else {
+                    console.warn("Emissions data structure mismatch, using fallback");
+                    setData(getMockEmissions());
+                }
+            } catch (err) {
+                console.error("Failed to fetch emissions:", err);
                 setData(getMockEmissions());
             } finally {
                 setLoading(false);
@@ -29,8 +36,14 @@ const Emissions = () => {
 
     // Animate counter
     useEffect(() => {
-        if (!data) return;
-        const target = parseInt(data.summary.totalCO2Saved);
+        if (!data || !data.summary || !data.summary.totalCO2Saved) return;
+        
+        const targetValue = parseInt(data.summary.totalCO2Saved) || 0;
+        if (targetValue === 0) {
+            setAnimatedCO2(0);
+            return;
+        }
+
         const duration = 2000;
         const start = Date.now();
 
@@ -38,14 +51,16 @@ const Emissions = () => {
             const elapsed = Date.now() - start;
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-            setAnimatedCO2(Math.floor(target * eased));
+            setAnimatedCO2(Math.floor(targetValue * eased));
             if (progress < 1) {
                 counterRef.current = requestAnimationFrame(animate);
             }
         };
 
         counterRef.current = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(counterRef.current);
+        return () => {
+            if (counterRef.current) cancelAnimationFrame(counterRef.current);
+        };
     }, [data]);
 
     if (loading || !data) {
@@ -58,7 +73,19 @@ const Emissions = () => {
         );
     }
 
-    const { monthlyTrends, summary, vehicleTypeEmissions, weeklyData } = data;
+    const { monthlyTrends = [], summary = {}, vehicleTypeEmissions = [], weeklyData = [] } = data || {};
+
+    if (!summary.totalCO2Saved && !loading) {
+        return (
+            <DashboardLayout title="Emissions">
+                <div style={{ textAlign: 'center', padding: '3rem' }}>
+                    <h3>Data structure error</h3>
+                    <p>Expected data properties are missing.</p>
+                    <button className="btn btn-primary" onClick={() => setData(getMockEmissions())}>Load Mock Data</button>
+                </div>
+            </DashboardLayout>
+        );
+    }
 
     return (
         <DashboardLayout title="Emissions">
