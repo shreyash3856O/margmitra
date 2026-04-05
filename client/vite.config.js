@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      'axios': path.resolve(__dirname, './src/api/mock.js'),
     },
   },
   server: {
