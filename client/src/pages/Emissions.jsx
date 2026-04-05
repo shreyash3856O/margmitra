@@ -17,7 +17,7 @@ const Emissions = () => {
         const fetchEmissions = async () => {
             try {
                 // Try fetching from the mock API first (which may be aliased axios)
-                const res = await axios.get('http://localhost:5000/api/traffic/emissions');
+                const res = await axios.get('/api/traffic/emissions');
                 if (res.data && res.data.summary) {
                     setData(res.data);
                 } else {

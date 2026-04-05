@@ -20,7 +20,7 @@ const CityHeatmap = () => {
 
     const fetchZones = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/traffic/zones');
+            const res = await axios.get('/api/traffic/zones');
             setZones(res.data);
         } catch {
             setZones(getMockZones());

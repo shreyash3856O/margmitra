@@ -23,7 +23,7 @@ const ZoneInsights = () => {
     useEffect(() => {
         const fetchZones = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/traffic/zones');
+                const res = await axios.get('/api/traffic/zones');
                 setZoneData(res.data);
             } catch {
                 setZoneData(getMockZoneData());

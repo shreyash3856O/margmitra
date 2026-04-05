@@ -10,7 +10,7 @@ const FleetPage = () => {
 
     const fetchVehicles = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/vehicles', { withCredentials: true });
+            const res = await axios.get('/api/vehicles', { withCredentials: true });
             setVehicles(res.data);
         } catch (err) {
             console.error(err);
@@ -24,7 +24,7 @@ const FleetPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/vehicles', formData, { withCredentials: true });
+            await axios.post('/api/vehicles', formData, { withCredentials: true });
             setFormData({ licensePlate: '', type: 'Light Van', capacity: '' });
             setShowForm(false);
             fetchVehicles();

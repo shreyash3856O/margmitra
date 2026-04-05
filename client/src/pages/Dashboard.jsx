@@ -57,7 +57,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/traffic/vehicles/live');
+                const res = await axios.get('/api/traffic/vehicles/live');
                 setVehicles(res.data);
             } catch (err) {
                 // Use mock data if server not available

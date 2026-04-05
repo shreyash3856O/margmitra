@@ -10,25 +10,31 @@ export const AuthProvider = ({ children }) => {
 
     // Initial load: check for user and initialize mock "database"
     useEffect(() => {
-        const storedUser = localStorage.getItem('margmitra_user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
+        try {
+            if (typeof localStorage === 'undefined') return;
+            
+            const storedUser = localStorage.getItem('margmitra_user');
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
 
-        const mockUsers = localStorage.getItem('margmitra_mock_users');
-        if (!mockUsers || JSON.parse(mockUsers).length === 0) {
-            // Pre-seed a test user for convenience
-            const testUser = { 
-                email: 'test@test.com', 
-                password: 'password', 
-                name: 'Test User', 
-                id: 'test-123',
-                createdAt: new Date().toISOString()
-            };
-            localStorage.setItem('margmitra_mock_users', JSON.stringify([testUser]));
+            const mockUsers = localStorage.getItem('margmitra_mock_users');
+            if (!mockUsers || JSON.parse(mockUsers).length === 0) {
+                // Pre-seed a test user for convenience
+                const testUser = { 
+                    email: 'test@test.com', 
+                    password: 'password', 
+                    name: 'Test User', 
+                    id: 'test-123',
+                    createdAt: new Date().toISOString()
+                };
+                localStorage.setItem('margmitra_mock_users', JSON.stringify([testUser]));
+            }
+        } catch (err) {
+            console.warn("LocalStorage is restricted or unavailable", err);
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     }, []);
 
     const register = async (userData) => {

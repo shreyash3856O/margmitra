@@ -14,7 +14,7 @@ const Analytics = () => {
     useEffect(() => {
         const fetchAnalytics = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/traffic/analytics');
+                const res = await axios.get('/api/traffic/analytics');
                 setData(res.data);
             } catch {
                 setData(getMockAnalytics());

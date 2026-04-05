@@ -18,7 +18,7 @@ const BookingPage = () => {
 
     // Fetch user fleets
     useEffect(() => {
-        axios.get('http://localhost:5000/api/vehicles', { withCredentials: true })
+        axios.get('/api/vehicles', { withCredentials: true })
             .then(res => {
                 setVehicles(res.data);
                 if(res.data.length > 0) setBookingDetails(prev => ({...prev, vehicleId: res.data[0]._id}));
