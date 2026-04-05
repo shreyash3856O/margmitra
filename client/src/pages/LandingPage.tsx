@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Clock, Map, TrendingDown, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Entropy } from "@/components/ui/entropy";
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -11,7 +12,10 @@ const LandingPage = () => {
     return (
         <div style={{ overflowX: 'hidden' }}>
             {/* Hero Section */}
-            <section style={{ minHeight: '90vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '4rem' }}>
+            <section style={{ minHeight: '90vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '4rem', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, right: 0, opacity: 0.3, zIndex: -1 }}>
+                    <Entropy size={800} />
+                </div>
                 <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
                     <motion.div 
                         initial={{ opacity: 0, x: -50 }}

@@ -18,6 +18,7 @@ const ZoneInsights = lazy(() => import('./pages/ZoneInsights'));
 const Emissions = lazy(() => import('./pages/Emissions'));
 const Notifications = lazy(() => import('./pages/Notifications'));
 const Settings = lazy(() => import('./pages/Settings'));
+const EntropyDemo = lazy(() => import('./components/ui/entropy-demo'));
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -76,6 +77,7 @@ function App() {
               <Route path="/settings" element={
                 <ProtectedRoute><Settings /></ProtectedRoute>
               } />
+              <Route path="/entropy-demo" element={<EntropyDemo />} />
             </Routes>
           </Suspense>
         </BookingProvider>

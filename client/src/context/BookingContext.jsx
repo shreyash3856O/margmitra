@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const BookingContext = createContext();
 
-const API_URL = 'http://localhost:5000/api/booking';
+import { API_BASE_URL } from '../api/config';
+const API_URL = `${API_BASE_URL}/booking`;
 
 export const BookingProvider = ({ children }) => {
     const [slots, setSlots] = useState([]);
