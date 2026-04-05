@@ -60,6 +60,10 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    winston.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        winston.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    });
+}
+
+export default app;
