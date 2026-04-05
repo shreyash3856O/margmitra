@@ -52,9 +52,9 @@ const mockAxios = {
     }
     if (url.includes('/api/traffic/zones') || url.includes('/api/booking/recommendations')) {
         return { data: [
-            { id: 1, name: 'Mira Road East', congestion: 0.8, status: 'congested', time: '09:00 AM' },
-            { id: 2, name: 'Bhayandar West', congestion: 0.3, status: 'optimal', time: '11:00 AM' },
-            { id: 3, name: 'Mira Road West', congestion: 0.5, status: 'available', time: '02:00 PM' },
+            { id: 1, name: 'Mira Road East', congestionIndex: 78, congestionLevel: 'high', lat: 19.2813, lng: 72.8557, radius: 1200, activeDeliveries: 12, avgSpeed: 18 },
+            { id: 2, name: 'Bhayandar West', congestionIndex: 25, congestionLevel: 'low', lat: 19.3100, lng: 72.8450, radius: 1400, activeDeliveries: 5, avgSpeed: 38 },
+            { id: 3, name: 'Mira Road West', congestionIndex: 55, congestionLevel: 'medium', lat: 19.2882, lng: 72.8633, radius: 1000, activeDeliveries: 15, avgSpeed: 22 },
         ]};
     }
     if (url.includes('/api/traffic/analytics')) {

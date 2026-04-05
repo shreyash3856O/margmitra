@@ -23,10 +23,10 @@ export const BookingProvider = ({ children }) => {
             setTimeout(() => {
                 // Return static mock slots
                 const mockSlots = [
-                    { id: 1, time: '09:00 AM', status: 'optimal', surge: 1.0 },
-                    { id: 2, time: '11:00 AM', status: 'available', surge: 1.2 },
-                    { id: 3, time: '02:00 PM', status: 'optimal', surge: 1.0 },
-                    { id: 4, time: '05:00 PM', status: 'congested', surge: 1.8 },
+                    { _id: 's1', startTime: new Date(Date.now() + 3600000).toISOString(), congestionLevel: 'low', currentLoad: 45, maxCapacity: 100 },
+                    { _id: 's2', startTime: new Date(Date.now() + 7200000).toISOString(), congestionLevel: 'medium', currentLoad: 78, maxCapacity: 150 },
+                    { _id: 's3', startTime: new Date(Date.now() + 10800000).toISOString(), congestionLevel: 'low', currentLoad: 12, maxCapacity: 100 },
+                    { _id: 's4', startTime: new Date(Date.now() + 14400000).toISOString(), congestionLevel: 'high', currentLoad: 190, maxCapacity: 200 },
                 ];
                 setSlots(mockSlots);
                 setLoading(false);
