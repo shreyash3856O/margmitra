@@ -16,6 +16,8 @@ const CityHeatmap = lazy(() => import('./pages/CityHeatmap'));
 const Analytics = lazy(() => import('./pages/Analytics'));
 const ZoneInsights = lazy(() => import('./pages/ZoneInsights'));
 const Emissions = lazy(() => import('./pages/Emissions'));
+const Notifications = lazy(() => import('./pages/Notifications'));
+const Settings = lazy(() => import('./pages/Settings'));
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -37,7 +39,7 @@ function App() {
     <Router>
       <AuthProvider>
         <BookingProvider>
-          <Suspense fallback={<div className="loading-screen">Loading UrbanFlow...</div>}>
+          <Suspense fallback={<div className="loading-screen">Loading MargMitra...</div>}>
             <Routes>
               {/* Public Routes (with Navbar + Footer) */}
               <Route path="/" element={<PublicLayout><LandingPage /></PublicLayout>} />
@@ -69,10 +71,10 @@ function App() {
 
               {/* Placeholder routes for sidebar links */}
               <Route path="/notifications" element={
-                <ProtectedRoute><Dashboard /></ProtectedRoute>
+                <ProtectedRoute><Notifications /></ProtectedRoute>
               } />
               <Route path="/settings" element={
-                <ProtectedRoute><Dashboard /></ProtectedRoute>
+                <ProtectedRoute><Settings /></ProtectedRoute>
               } />
             </Routes>
           </Suspense>

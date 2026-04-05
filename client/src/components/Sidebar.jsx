@@ -39,7 +39,7 @@ const Sidebar = () => {
                     <Package size={20} />
                 </div>
                 <div className="sidebar-logo-text">
-                    <h2>UrbanFlow</h2>
+                    <h2>MargMitra</h2>
                     <span>Smart Logistics</span>
                 </div>
             </div>

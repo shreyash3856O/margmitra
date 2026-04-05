@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-const MUMBAI_CENTER = [19.0760, 72.8777];
+const MIRABHAYANDAR_CENTER = [19.2952, 72.8544];
 
 const statusColors = {
     en_route: '#3b82f6',
@@ -159,8 +159,8 @@ const Dashboard = () => {
             {/* Map Section */}
             <div className="map-container" style={{ height: '420px', marginBottom: '1.5rem' }}>
                 <MapContainer
-                    center={MUMBAI_CENTER}
-                    zoom={12}
+                    center={MIRABHAYANDAR_CENTER}
+                    zoom={13}
                     style={{ height: '100%', width: '100%' }}
                     zoomControl={true}
                 >
@@ -296,10 +296,10 @@ function generateMockVehicles() {
     
     return plates.map((plate, i) => {
         const status = statuses[i % 3];
-        const baseLat = 19.0760 + (Math.random() - 0.5) * 0.08;
-        const baseLng = 72.8777 + (Math.random() - 0.5) * 0.08;
-        const destLat = baseLat + (Math.random() - 0.5) * 0.05;
-        const destLng = baseLng + (Math.random() - 0.5) * 0.05;
+        const baseLat = 19.2952 + (Math.random() - 0.5) * 0.03;
+        const baseLng = 72.8544 + (Math.random() - 0.5) * 0.03;
+        const destLat = baseLat + (Math.random() - 0.5) * 0.02;
+        const destLng = baseLng + (Math.random() - 0.5) * 0.02;
         
         const route = status !== 'idle' ? Array.from({ length: 6 }, (_, j) => {
             const t = j / 5;

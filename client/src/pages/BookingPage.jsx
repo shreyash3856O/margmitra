@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useBooking } from '../context/BookingContext';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Search, Calendar, Info } from 'lucide-react';
-import { format } from 'date-fns';
 import axios from 'axios';
 import DashboardLayout from '../components/DashboardLayout';
 
@@ -52,6 +51,20 @@ const BookingPage = () => {
             case 'high': return { bg: 'rgba(239, 68, 68, 0.1)', text: 'var(--danger)' };
             default: return { bg: 'var(--bg-main)', text: 'var(--text-muted)' };
         }
+    };
+
+    const formatTime = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    };
+
+    const formatFullDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            month: 'short', day: 'numeric', year: 'numeric' 
+        }) + ' - ' + date.toLocaleTimeString('en-US', { 
+            hour: '2-digit', minute: '2-digit', hour12: true 
+        });
     };
 
     return (
@@ -113,7 +126,7 @@ const BookingPage = () => {
                                     }}
                                 >
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                                        <span style={{ fontWeight: 600 }}>{format(new Date(slot.startTime), 'HH:mm')}</span>
+                                        <span style={{ fontWeight: 600 }}>{formatTime(slot.startTime)}</span>
                                         <span className="badge" style={{ background: colors.bg, color: colors.text }}>{slot.congestionLevel}</span>
                                     </div>
                                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -136,7 +149,7 @@ const BookingPage = () => {
                     ) : (
                         <form onSubmit={handleBooking} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div style={{ background: 'var(--bg-main)', padding: '1rem', borderRadius: '8px', fontSize: '0.875rem', marginBottom: '0.5rem' }}>
-                                <strong>Selected:</strong> {format(new Date(selectedSlot.startTime), 'PPP - HH:mm a')}
+                                <strong>Selected:</strong> {formatFullDate(selectedSlot.startTime)}
                             </div>
 
                             {error && <div style={{ color: 'var(--danger)', fontSize: '0.875rem' }}>{error}</div>}

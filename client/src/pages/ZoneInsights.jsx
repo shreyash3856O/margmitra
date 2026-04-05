@@ -9,11 +9,11 @@ import { MapPin, Truck, Clock, Gauge, TrendingUp } from 'lucide-react';
 import axios from 'axios';
 
 const ZONES = [
-    { id: 'downtown', name: 'Downtown Core', lat: 18.9388, lng: 72.8354 },
-    { id: 'commercial', name: 'Commercial Hub', lat: 19.0760, lng: 72.8777 },
-    { id: 'residential', name: 'Suburban Residential', lat: 19.1136, lng: 72.8697 },
-    { id: 'industrial', name: 'Industrial Area', lat: 19.0330, lng: 72.8560 },
-    { id: 'portzone', name: 'Port Zone', lat: 18.9540, lng: 72.8440 },
+    { id: 'miraroad', name: 'Mira Road', lat: 19.2813, lng: 72.8557 },
+    { id: 'bhayandare', name: 'Bhayandar East', lat: 19.3000, lng: 72.8580 },
+    { id: 'bhayandarw', name: 'Bhayandar West', lat: 19.3100, lng: 72.8450 },
+    { id: 'goldennest', name: 'Golden Nest', lat: 19.2882, lng: 72.8633 },
+    { id: 'kashimira', name: 'Kashimira', lat: 19.2741, lng: 72.8715 },
 ];
 
 const ZoneInsights = () => {
@@ -200,11 +200,11 @@ const ZoneInsights = () => {
 
 function getMockZoneData() {
     return [
-        { id: 'downtown', congestionIndex: 78, congestionLevel: 'high', activeDeliveries: 12, avgSpeed: 18, vehicleCount: 45 },
-        { id: 'commercial', congestionIndex: 55, congestionLevel: 'medium', activeDeliveries: 8, avgSpeed: 25, vehicleCount: 32 },
-        { id: 'residential', congestionIndex: 25, congestionLevel: 'low', activeDeliveries: 5, avgSpeed: 38, vehicleCount: 15 },
-        { id: 'industrial', congestionIndex: 62, congestionLevel: 'medium', activeDeliveries: 15, avgSpeed: 22, vehicleCount: 28 },
-        { id: 'portzone', congestionIndex: 82, congestionLevel: 'high', activeDeliveries: 20, avgSpeed: 12, vehicleCount: 50 },
+        { id: 'miraroad', congestionIndex: 78, congestionLevel: 'high', activeDeliveries: 12, avgSpeed: 18, vehicleCount: 45 },
+        { id: 'bhayandare', congestionIndex: 55, congestionLevel: 'medium', activeDeliveries: 8, avgSpeed: 25, vehicleCount: 32 },
+        { id: 'bhayandarw', congestionIndex: 25, congestionLevel: 'low', activeDeliveries: 5, avgSpeed: 38, vehicleCount: 15 },
+        { id: 'goldennest', congestionIndex: 62, congestionLevel: 'medium', activeDeliveries: 15, avgSpeed: 22, vehicleCount: 28 },
+        { id: 'kashimira', congestionIndex: 82, congestionLevel: 'high', activeDeliveries: 20, avgSpeed: 12, vehicleCount: 50 },
     ];
 }
 

@@ -13,7 +13,7 @@ const Navbar = () => {
                     <div style={{ background: 'var(--accent)', color: 'white', padding: '0.4rem', borderRadius: '8px', display: 'flex' }}>
                         <Truck size={24} />
                     </div>
-                    margmitra
+                    MargMitra
                 </Link>
 
                 <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>

@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { Clock, Layers, Route, ParkingCircle } from 'lucide-react';
 import axios from 'axios';
 
-const MUMBAI_CENTER = [19.0760, 72.8777];
+const MIRABHAYANDAR_CENTER = [19.2952, 72.8544];
 
 const CityHeatmap = () => {
     const [zones, setZones] = useState([]);
@@ -45,18 +45,18 @@ const CityHeatmap = () => {
         { id: 'parking', label: 'Parking Zones', icon: ParkingCircle },
     ];
 
-    // Mock delivery routes
+    // Mock delivery routes (Mira Bhayandar)
     const deliveryRoutes = [
-        { id: 1, positions: [[19.076, 72.877], [19.065, 72.870], [19.050, 72.860], [18.955, 72.845]], color: '#3b82f6' },
-        { id: 2, positions: [[19.113, 72.869], [19.100, 72.875], [19.076, 72.877]], color: '#8b5cf6' },
-        { id: 3, positions: [[19.033, 72.856], [19.050, 72.865], [19.070, 72.870]], color: '#10b981' },
+        { id: 1, positions: [[19.274, 72.871], [19.280, 72.865], [19.281, 72.855]], color: '#3b82f6' },
+        { id: 2, positions: [[19.281, 72.855], [19.288, 72.863], [19.300, 72.858]], color: '#8b5cf6' },
+        { id: 3, positions: [[19.310, 72.845], [19.305, 72.855], [19.288, 72.863]], color: '#10b981' },
     ];
 
-    // Mock parking zones
+    // Mock parking zones (Mira Bhayandar)
     const parkingZones = [
-        { lat: 19.082, lng: 72.881, name: 'Central Parking', spots: 45 },
-        { lat: 19.060, lng: 72.860, name: 'South Hub Parking', spots: 30 },
-        { lat: 19.100, lng: 72.875, name: 'North Parking', spots: 60 },
+        { lat: 19.283, lng: 72.856, name: 'Mira Road Stn Parking', spots: 45 },
+        { lat: 19.302, lng: 72.850, name: 'Bhayandar East Hub', spots: 30 },
+        { lat: 19.288, lng: 72.863, name: 'Golden Nest Market', spots: 60 },
     ];
 
     return (
@@ -66,8 +66,8 @@ const CityHeatmap = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <div className="map-container" style={{ flex: 1, minHeight: '400px' }}>
                         <MapContainer
-                            center={MUMBAI_CENTER}
-                            zoom={12}
+                            center={MIRABHAYANDAR_CENTER}
+                            zoom={13}
                             style={{ height: '100%', width: '100%' }}
                         >
                             <TileLayer
@@ -225,11 +225,11 @@ const CityHeatmap = () => {
 
 function getMockZones() {
     return [
-        { id: 'downtown', name: 'Downtown Core', lat: 18.9388, lng: 72.8354, radius: 2000, congestionIndex: 78, congestionLevel: 'high', activeDeliveries: 12, avgSpeed: 18, vehicleCount: 45 },
-        { id: 'commercial', name: 'Commercial Hub', lat: 19.0760, lng: 72.8777, radius: 2500, congestionIndex: 55, congestionLevel: 'medium', activeDeliveries: 8, avgSpeed: 25, vehicleCount: 32 },
-        { id: 'residential', name: 'Suburban Residential', lat: 19.1136, lng: 72.8697, radius: 3000, congestionIndex: 25, congestionLevel: 'low', activeDeliveries: 5, avgSpeed: 38, vehicleCount: 15 },
-        { id: 'industrial', name: 'Industrial Area', lat: 19.0330, lng: 72.8560, radius: 1800, congestionIndex: 62, congestionLevel: 'medium', activeDeliveries: 15, avgSpeed: 22, vehicleCount: 28 },
-        { id: 'portzone', name: 'Port Zone', lat: 18.9540, lng: 72.8440, radius: 1500, congestionIndex: 82, congestionLevel: 'high', activeDeliveries: 20, avgSpeed: 12, vehicleCount: 50 },
+        { id: 'miraroad', name: 'Mira Road', lat: 19.2813, lng: 72.8557, radius: 1200, congestionIndex: 78, congestionLevel: 'high', activeDeliveries: 12, avgSpeed: 18, vehicleCount: 45 },
+        { id: 'bhayandare', name: 'Bhayandar East', lat: 19.3000, lng: 72.8580, radius: 1500, congestionIndex: 55, congestionLevel: 'medium', activeDeliveries: 8, avgSpeed: 25, vehicleCount: 32 },
+        { id: 'bhayandarw', name: 'Bhayandar West', lat: 19.3100, lng: 72.8450, radius: 1400, congestionIndex: 25, congestionLevel: 'low', activeDeliveries: 5, avgSpeed: 38, vehicleCount: 15 },
+        { id: 'goldennest', name: 'Golden Nest', lat: 19.2882, lng: 72.8633, radius: 1000, congestionIndex: 62, congestionLevel: 'medium', activeDeliveries: 15, avgSpeed: 22, vehicleCount: 28 },
+        { id: 'kashimira', name: 'Kashimira', lat: 19.2741, lng: 72.8715, radius: 1300, congestionIndex: 82, congestionLevel: 'high', activeDeliveries: 20, avgSpeed: 12, vehicleCount: 50 },
     ];
 }
 

@@ -44,7 +44,7 @@ const LandingPage = () => {
                         <div style={{ background: 'var(--bg-card)', borderRadius: '24px', padding: '2rem', boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border)' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                                 <div>
-                                    <h3 style={{ fontSize: '1.25rem' }}>Downtown Market Zone</h3>
+                                    <h3 style={{ fontSize: '1.25rem' }}>Mira Road Zone</h3>
                                     <p style={{ color: 'var(--success)', fontSize: '0.875rem', fontWeight: 600 }}>Active Scheduling • Traffic -34%</p>
                                 </div>
                                 <div style={{ background: 'var(--success)', color: 'white', padding: '0.5rem', borderRadius: '50%' }}>

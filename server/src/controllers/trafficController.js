@@ -1,13 +1,14 @@
 import { db, generateId } from '../config/memoryDB.js';
 
-// Zones with real Mumbai coordinates
+// Zones with Mira Bhayandar coordinates
 const ZONES = [
-    { id: 'downtown', name: 'Downtown Core', lat: 18.9388, lng: 72.8354, radius: 2000, color: '#ef4444' },
-    { id: 'commercial', name: 'Commercial Hub', lat: 19.0760, lng: 72.8777, radius: 2500, color: '#f59e0b' },
-    { id: 'residential', name: 'Suburban Residential', lat: 19.1136, lng: 72.8697, radius: 3000, color: '#10b981' },
-    { id: 'industrial', name: 'Industrial Area', lat: 19.0330, lng: 72.8560, radius: 1800, color: '#8b5cf6' },
-    { id: 'portzone', name: 'Port Zone', lat: 18.9540, lng: 72.8440, radius: 1500, color: '#06b6d4' },
+    { id: 'miraroad', name: 'Mira Road', lat: 19.2813, lng: 72.8557, radius: 1200, color: '#f59e0b' },
+    { id: 'bhayandare', name: 'Bhayandar East', lat: 19.3000, lng: 72.8580, radius: 1500, color: '#8b5cf6' },
+    { id: 'bhayandarw', name: 'Bhayandar West', lat: 19.3100, lng: 72.8450, radius: 1400, color: '#10b981' },
+    { id: 'goldennest', name: 'Golden Nest', lat: 19.2882, lng: 72.8633, radius: 1000, color: '#ef4444' },
+    { id: 'kashimira', name: 'Kashimira', lat: 19.2741, lng: 72.8715, radius: 1300, color: '#06b6d4' },
 ];
+
 
 // Simulate vehicle positions near Mumbai
 const generateVehiclePositions = () => {
@@ -18,8 +19,8 @@ const generateVehiclePositions = () => {
     return names.map((plate, i) => {
         const zone = ZONES[i % ZONES.length];
         const status = statuses[i % statuses.length];
-        const jitterLat = (Math.random() - 0.5) * 0.04;
-        const jitterLng = (Math.random() - 0.5) * 0.04;
+        const jitterLat = (Math.random() - 0.5) * 0.02;
+        const jitterLng = (Math.random() - 0.5) * 0.02;
         
         return {
             id: `veh_${i}`,
@@ -33,16 +34,17 @@ const generateVehiclePositions = () => {
             speed: status === 'idle' ? 0 : Math.floor(Math.random() * 40) + 15,
             heading: Math.floor(Math.random() * 360),
             destination: status !== 'idle' ? {
-                lat: zone.lat + (Math.random() - 0.5) * 0.06,
-                lng: zone.lng + (Math.random() - 0.5) * 0.06,
+                lat: zone.lat + (Math.random() - 0.5) * 0.025,
+                lng: zone.lng + (Math.random() - 0.5) * 0.025,
             } : null,
             route: status !== 'idle' ? generateRoute(
                 zone.lat + jitterLat,
                 zone.lng + jitterLng,
-                zone.lat + (Math.random() - 0.5) * 0.06,
-                zone.lng + (Math.random() - 0.5) * 0.06,
+                zone.lat + (Math.random() - 0.5) * 0.025,
+                zone.lng + (Math.random() - 0.5) * 0.025,
                 5 + Math.floor(Math.random() * 5)
             ) : [],
+
             eta: status !== 'idle' ? `${Math.floor(Math.random() * 30) + 5} min` : null,
             zone: zone.id,
         };
